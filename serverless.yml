@@ -1,0 +1,30 @@
+service: serverless-demo01
+
+provider:
+  name: aws
+  runtime: python3.7
+  timeout: 5
+  memorySize: 256
+
+functions:
+  hello:
+    handler: handler.hello
+
+  add_fixed_value:
+    handler: add_fixed_value.handler
+    name: ${opt:stage}-demo-lambda-add_fixed_value
+    events:
+      - http:
+          method: POST
+          path: add
+    environment:
+      FIXED_VALUE: ${file(resources/config.${opt:stage}.json):fixed_value}
+  sub_fixed_value:
+    handler: sub_fixed_value.handler
+    name: ${opt:stage}-demo-lambda-sub_fixed_value
+    events:
+      - http:
+          method: POST
+          path: sub
+    environment:
+      FIXED_VALUE: ${file(resources/config.${opt:stage}.json):fixed_value}
