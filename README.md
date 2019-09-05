@@ -7,7 +7,7 @@ Code used as example on a introdutory talk about serverlerss architecture and th
 > npm install -g serverless
 
 ## Deploying to AWS
-> serverless --stage dev
+> serverless deploy --stage dev
 
 ## Invoking Funcion
 * ### Invoking on AWS
@@ -15,3 +15,8 @@ Code used as example on a introdutory talk about serverlerss architecture and th
 
 * ### Invoking Lambda locally
 > serverless invoke local --stage dev --function sub_fixed_value --path example_requests/request.json
+
+
+## Cleaning
+To remove the stack from your AWS account simply execute
+> serverless remove --stage dev
